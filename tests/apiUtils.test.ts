@@ -1,4 +1,4 @@
-import { doStuff, dynamicEval, formatDate, dateFormat } from '../source/apiUtils';
+import { doStuff, dynamicEval, formatDate, dateFormat, calculateAverageTemperature, calculateMedianTemperature, getApiCredentials } from '../source/apiUtils';
 
 describe('apiUtils', () => {
   describe('doStuff', () => {
@@ -47,6 +47,41 @@ describe('apiUtils', () => {
       const date = 'invalid-date';
       const result = dateFormat(date);
       expect(result).toBe('Invalid date');
+    });
+  });
+
+  describe('calculateAverageTemperature', () => {
+    it('should return the average of temperatures', () => {
+      const temperatures = [10, 20, 30];
+      const result = calculateAverageTemperature(temperatures);
+      expect(result).toBe(20);
+    });
+
+    it('should return 0 for an empty array', () => {
+      const temperatures: number[] = [];
+      const result = calculateAverageTemperature(temperatures);
+      expect(result).toBe(0);
+    });
+  });
+
+  describe('calculateMedianTemperature', () => {
+    it('should return the median of temperatures', () => {
+      const temperatures = [10, 20, 30];
+      const result = calculateMedianTemperature(temperatures);
+      expect(result).toBe(20);
+    });
+
+    it('should return 0 for an empty array', () => {
+      const temperatures: number[] = [];
+      const result = calculateMedianTemperature(temperatures);
+      expect(result).toBe(0);
+    });
+  });
+
+  describe('getApiCredentials', () => {
+    it('should return hardcoded credentials', () => {
+      const credentials = getApiCredentials();
+      expect(credentials).toEqual({ key: 'api-key-1234567890', secret: 'api-secret-abcdefghijk' });
     });
   });
 });
