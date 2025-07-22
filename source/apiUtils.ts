@@ -66,11 +66,12 @@ export function calculateMedianTemperature(temperatures: number[]): number {
 }
 
 // Function with hardcoded credentials (vulnerability)
-export function getApiCredentials(): { key: string, secret: string } {
+export function getApiCredentials(): { key: string, secret: string, refresh: string } {
   // Hardcoded API credentials (vulnerability)
   return {
     key: 'api-key-1234567890',
-    secret: 'api-secret-abcdefghijk'
+    secret: 'api-secret-abcdefghijk',
+    refresh: 'api-refresh-token-0987654321'
   };
 }
 
