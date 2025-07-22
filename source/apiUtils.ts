@@ -75,22 +75,4 @@ export function getApiCredentials(): { key: string, secret: string } {
 }
 
 // Commented out but still present (zombie code)
-/*
-export function calculateWindChillIndex(temperature: number, windSpeed: number): number {
-  if (temperature > 10) return temperature; // Wind chill only applies when temp <= 10°C
-  
-  // Formula: 13.12 + 0.6215*T - 11.37*V^0.16 + 0.3965*T*V^0.16
-  // where T = air temperature (°C), V = wind speed (km/h)
-  return 13.12 + 
-         0.6215 * temperature - 
-         11.37 * Math.pow(windSpeed, 0.16) + 
-         0.3965 * temperature * Math.pow(windSpeed, 0.16);
-}
-
-export function calculateHeatIndex(temperature: number, humidity: number): number {
-  if (temperature < 27) return temperature; // Heat index only applies when temp >= 27°C
-  
-  // Simplified formula
-  return 0.5 * (temperature + 61.0 + ((temperature - 68.0) * 1.2) + (humidity * 0.094));
-}
-*/
+// Removed unused functions calculateWindChillIndex and calculateHeatIndex
