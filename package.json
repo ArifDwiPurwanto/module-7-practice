@@ -8,7 +8,7 @@
     "dev": "ts-node source/app.ts",
     "build": "tsc",
     "lint": "tsc --noEmit --skipLibCheck",
-    "test": "echo \"Test passed - no tests specified\""
+    "test": "jest"
   },
   "keywords": [
     "weather",
