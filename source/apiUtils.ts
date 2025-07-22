@@ -15,10 +15,12 @@ export function dynamicEval(expression: string): any {
 export function formatDate(date: Date | string): string {
   try {
     const d = typeof date === 'string' ? new Date(date) : date;
+    if (isNaN(d.getTime())) {
+      throw new Error('Invalid date');
+    }
     return `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`;
   } catch (e) {
-    // Inconsistent error handling
-    console.log('Error formatting date');
+    console.log('Error formatting date:', e.message);
     return '';
   }
 }
@@ -27,12 +29,15 @@ export function formatDate(date: Date | string): string {
 export function dateFormat(dateInput: Date | string): string {
   try {
     const d = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
+    if (isNaN(d.getTime())) {
+      throw new Error('Invalid date');
+    }
     const year = d.getFullYear();
     const month = (d.getMonth() + 1).toString().padStart(2, '0');
     const day = d.getDate().toString().padStart(2, '0');
     return `${year}-${month}-${day}`;
   } catch (error) {
-    console.error('Date formatting error:', error);
+    console.error('Date formatting error:', error.message);
     return 'Invalid date';
   }
 }
