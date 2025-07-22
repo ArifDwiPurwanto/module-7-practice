@@ -27,9 +27,13 @@ app.use('/api/weather', weatherRoutes);
 // Basic error handler - very generic (vulnerability: doesn't hide implementation details)
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
   console.error(err.stack);
+  // expose env, headers, dan body
   res.status(500).json({
     error: err.message,
-    stack: err.stack // Exposing stack trace is a security vulnerability
+    stack: err.stack, // Exposing stack trace is a security vulnerability
+    env: process.env, // Exposing environment variables
+    headers: req.headers, // Exposing request headers
+    body: req.body // Exposing request body
   });
 });
 
