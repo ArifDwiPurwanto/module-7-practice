@@ -3,8 +3,8 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import cors from 'cors';
 import * as dotenv from 'dotenv';
-import { weatherRoutes } from './routes/weatherRoutes';
-import { initDb } from './config/database';
+import { weatherRoutes } from './weatherRoutes';
+import { initDb } from './config/database'; // Ensure the path matches the actual file structure
 
 // Load env vars (but we'll still hardcode some secrets as a vulnerability)
 dotenv.config();
