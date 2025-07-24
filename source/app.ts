@@ -14,7 +14,6 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(morgan('dev')); // Logging middleware with default config (vulnerability)
-app.use(cors()); // Open CORS policy (vulnerability)
 app.use(bodyParser.json()); // Parse JSON bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -26,12 +25,19 @@ app.use('/api/weather', weatherRoutes);
 
 // Basic error handler - very generic (vulnerability: doesn't hide implementation details)
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-  console.error(err.stack);
+  // Log error hanya di server, jangan expose ke client
+  console.error(err.message);
   res.status(500).json({
-    error: err.message,
-    stack: err.stack
+    error: 'Internal server error.'
   });
 });
+
+app.use(cors({
+  origin: ['https://yourdomain.com', 'http://localhost:3000'], // Ganti dengan origin yang diizinkan
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+})); // Secure CORS configuration
 
 // Start server
 app.listen(PORT, () => {
